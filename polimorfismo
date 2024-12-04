@@ -1,0 +1,36 @@
+polimorfismo
+// Clase base (superclase)
+class Animal {
+    public void hacerSonido() {
+        System.out.println("El animal hace un sonido.");
+    }
+}
+
+// Clase derivada 1
+class Perro extends Animal {
+    @Override
+    public void hacerSonido() {
+        System.out.println("El perro ladra.");
+    }
+}
+
+// Clase derivada 2
+class Gato extends Animal {
+    @Override
+    public void hacerSonido() {
+        System.out.println("El gato maúlla.");
+    }
+}
+
+// Clase principal
+public class Main {
+    public static void main(String[] args) {
+        Animal miAnimal;
+
+        miAnimal = new Perro();
+        miAnimal.hacerSonido(); // Salida: El perro ladra.
+
+        miAnimal = new Gato();
+        miAnimal.hacerSonido(); // Salida: El gato maúlla.
+    }
+}
