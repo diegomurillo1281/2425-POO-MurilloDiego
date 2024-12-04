@@ -1,0 +1,23 @@
+herencia 
+// Clase base (superclase)
+class Animal {
+    public void hacerSonido() {
+        System.out.println("El animal hace un sonido.");
+    }
+}
+
+// Clase derivada (subclase)
+class Perro extends Animal {
+    @Override
+    public void hacerSonido() {
+        System.out.println("El perro ladra.");
+    }
+}
+
+// Clase principal
+public class Main {
+    public static void main(String[] args) {
+        Perro perro = new Perro();
+        perro.hacerSonido(); // Salida: El perro ladra.
+    }
+}
