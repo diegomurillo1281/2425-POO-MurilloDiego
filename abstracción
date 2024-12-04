@@ -1,0 +1,31 @@
+abstracción
+// Clase abstracta
+abstract class Vehiculo {
+    // Método abstracto
+    public abstract void conducir();
+}
+
+// Clase concreta: Coche
+class Coche extends Vehiculo {
+    @Override
+    public void conducir() {
+        System.out.println("Conduciendo un coche.");
+    }
+}
+
+// Clase concreta: Moto
+class Moto extends Vehiculo {
+    @Override
+    public void conducir() {
+        System.out.println("Conduciendo una moto.");
+    }
+}
+
+// Clase principal
+public class Main {
+    public static void main(String[] args) {
+        // Crear objetos de las clases concretas
+        Vehiculo coche = new Coche();
+        Vehiculo moto = new Moto();
+
+        //
