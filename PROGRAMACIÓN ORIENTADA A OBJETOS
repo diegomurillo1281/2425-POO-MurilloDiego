@@ -1,0 +1,64 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+class MedicionClima:
+    def __init__(self, fecha, estacion):
+        self.fecha = fecha
+        self.estacion = estacion
+
+    def calcular_anomalia(self):
+        raise NotImplementedError("Método abstracto")
+
+class DiaClima(MedicionClima):
+    def __init__(self, fecha, estacion, temperatura_maxima, temperatura_minima):
+        super().__init__(fecha, estacion)
+        self.temperatura_maxima = temperatura_maxima
+        self.temperatura_minima = temperatura_minima
+
+    def calcular_anomalia(self, temperatura_promedio):
+        return self.temperatura_maxima - temperatura_promedio
+
+    def __str__(self):
+        return f"Fecha: {self.fecha}, Máxima: {self.temperatura_maxima}°C, Mínima: {self.temperatura_minima}°C"
+
+def cargar_datos(archivo):
+    df = pd.read_csv(archivo, parse_dates=['fecha'])
+    dias_clima = [DiaClima(fecha, 'Guayaquil', max, min) for fecha, max, min in zip(df['fecha'], df['temperatura_maxima'], df['temperatura_minima'])]
+    return dias_clima
+
+def calcular_promedios(dias_clima):
+    df = pd.DataFrame(dias_clima)
+    promedio_max = df['temperatura_maxima'].mean()
+    promedio_min = df['temperatura_minima'].mean()
+    return promedio_max, promedio_min
+
+def calcular_anomalias(dias_clima, temperatura_promedio):
+    anomalias = [dia.calcular_anomalia(temperatura_promedio) for dia in dias_clima]
+    return anomalias
+
+def graficar_temperaturas(dias_clima):
+    temperaturas_maximas = [dia.temperatura_maxima for dia in dias_clima]
+    temperaturas_minimas = [dia.temperatura_minima for dia in dias_clima]
+    fechas = [dia.fecha for dia in dias_clima]
+
+    plt.plot(fechas, temperaturas_maximas, label='Máxima')
+    plt.plot(fechas, temperaturas_minimas, label='Mínima')
+    plt.xlabel('Fecha')
+    plt.ylabel('Temperatura (°C)')
+    plt.title('Evolución de las Temperaturas')
+    plt.legend()
+    plt.show()
+
+# Cargar los datos
+dias_clima = cargar_datos('datos_clima_guayaquil.csv')
+
+# Calcular promedios
+promedio_max, promedio_min = calcular_promedios(dias_clima)
+print(f"Promedio máximo semanal: {promedio_max:.2f}°C")
+print(f"Promedio mínimo semanal: {promedio_min:.2f}°C")
+
+# Calcular anomalías
+anomalias = calcular_anomalias(dias_clima, promedio_max)
+
+# Graficar las temperaturas
+graficar_temperaturas(dias_clima)
