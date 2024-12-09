@@ -1,0 +1,19 @@
+import random
+
+# Definimos una función para generar temperaturas aleatorias dentro de un rango típico de Guayaquil
+def generar_temperatura_guayaquil():
+    return random.uniform(25, 32)  # Temperaturas entre 25°C y 32°C
+
+# Función para calcular el promedio de una lista de números
+def calcular_promedio(lista_numeros):
+    return sum(lista_numeros) / len(lista_numeros)
+
+# Simulamos las temperaturas de una semana en Guayaquil
+temperaturas_semanales = [generar_temperatura_guayaquil() for _ in range(7)]
+
+# Calculamos el promedio semanal
+promedio_semanal = calcular_promedio(temperaturas_semanales)
+
+# Imprimimos el resultado
+print("Las temperaturas de la semana fueron:", temperaturas_semanales)
+print("El promedio de temperatura semanal en Guayaquil fue:", promedio_semanal, "°C")
