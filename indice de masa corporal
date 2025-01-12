@@ -1,1 +1,25 @@
+# Calculadora de Índice de Masa Corporal (IMC)
 
+def calcular_imc(peso, altura):
+    """Calcula el IMC de una persona.
+
+    Args:
+        peso (float): Peso de la persona en kilogramos.
+        altura (float): Altura de la persona en metros.
+
+    Returns:
+        float: Índice de masa corporal.
+    """
+
+    imc = peso / (altura ** 2)
+    return imc
+
+# Obtener datos del usuario
+peso = float(input("Ingrese su peso en kilogramos: "))
+altura = float(input("Ingrese su altura en metros: "))
+
+# Calcular el IMC
+resultado = calcular_imc(peso, altura)
+
+# Mostrar el resultado
+print("Su IMC es:", resultado)
