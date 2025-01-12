@@ -1,1 +1,27 @@
+class Hotel:
+    def __init__(self, nombre, direccion, num_habitaciones):
+        self.nombre = nombre
+        self.direccion = direccion
+        self.num_habitaciones = num_habitaciones
+        self.habitaciones_disponibles = num_habitaciones
 
+    def realizar_reserva(self, num_habitaciones):
+        if num_habitaciones <= self.habitaciones_disponibles:
+            self.habitaciones_disponibles -= num_habitaciones
+            print("Reserva realizada con éxito.")
+        else:
+            print("Lo sentimos, no hay suficientes habitaciones disponibles.")
+
+class Cliente:
+    def __init__(self, nombre, apellido):
+        self.nombre = nombre
+        self.apellido = apellido
+
+# Crear un objeto Hotel
+hotel1 = Hotel("Hotel Ejemplo", "Calle Principal 123", 100)
+
+# Crear un objeto Cliente
+cliente1 = Cliente("Juan", "Pérez")
+
+# Realizar una reserva
+hotel1.realizar_reserva(20)
