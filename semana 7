@@ -1,0 +1,21 @@
+class ManejadorDeArchivos:
+    def __init__(self, nombre_archivo):
+        print("Creando objeto ManejadorDeArchivos")
+        self.nombre_archivo = nombre_archivo
+        try:
+            self.archivo = open(nombre_archivo, "w")
+        except IOError:
+            print("Error al abrir el archivo")
+            self.archivo = None
+
+    def escribir(self, texto):
+        if self.archivo is not None:
+            self.archivo.write(texto)
+        else:
+            print("No se puede escribir en el archivo. Archivo no válido.")
+
+    def __del__(self):
+        if self.archivo is not None:
+            self.archivo.close()
+            print("Cerrando archivo:", self.nombre_archivo)
+        print("Destruyendo objeto ManejadorDeArchivos")
