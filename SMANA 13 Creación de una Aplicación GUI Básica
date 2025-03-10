@@ -1,0 +1,38 @@
+import tkinter as tk
+from tkinter import ttk
+
+class AplicacionGUI:
+    def __init__(self, ventana):
+        self.ventana = ventana
+        self.ventana.title("Mi Aplicación GUI")
+
+        # Componentes GUI
+        self.etiqueta = tk.Label(ventana, text="Ingresa información:")
+        self.entrada = tk.Entry(ventana, width=30)
+        self.boton_agregar = tk.Button(ventana, text="Agregar", command=self.agregar_informacion)
+        self.boton_limpiar = tk.Button(ventana, text="Limpiar", command=self.limpiar_informacion)
+
+        # Lista para mostrar datos
+        self.lista = tk.Listbox(ventana, width=40, height=10)
+
+        # Posicionamiento de componentes
+        self.etiqueta.pack(pady=10)
+        self.entrada.pack(pady=5)
+        self.boton_agregar.pack(pady=5)
+        self.boton_limpiar.pack(pady=5)
+        self.lista.pack(pady=10)
+
+    def agregar_informacion(self):
+        informacion = self.entrada.get()
+        if informacion:
+            self.lista.insert(tk.END, informacion)
+            self.entrada.delete(0, tk.END)
+
+    def limpiar_informacion(self):
+        self.lista.delete(0, tk.END)
+        self.entrada.delete(0, tk.END)
+
+if __name__ == "__main__":
+    ventana = tk.Tk()
+    app = AplicacionGUI(ventana)
+    ventana.mainloop()
